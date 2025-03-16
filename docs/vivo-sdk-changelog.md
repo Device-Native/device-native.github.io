@@ -107,3 +107,13 @@ hide:
 ## [**vivo-1.2.1**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar) released 2/20/2025
 
 - Implemented native fallback support for search and suggestions
+
+## [**vivo-1.2.2**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.2.aar) released 3/14/2025
+
+- Minor memory optimizations
+
+## [**vivo-1.2.3**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.3.aar) released 3/14/2025
+
+- Latency improvements for ad serving through warm ups of key service
+- Support new macro for passing product source to URL
+- Security improvement for parseUri on link redirection
