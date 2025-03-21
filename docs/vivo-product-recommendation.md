@@ -67,9 +67,22 @@ The following table describes the parameters that should be included in the API 
 ## Response Parameters
 响应参数
 
-The API response is an array of product recommendation objects with the following parameters:
+The API response contains a list of app results, where each app has its own product recommendations and "See More" links:
 
-API响应是一个产品推荐对象数组，具有以下参数：
+API响应包含一个应用结果列表，其中每个应用都有自己的产品推荐和"查看更多"链接：
+
+| Parameter | Type | Required | Description | 描述 |
+|-----------|------|----------|-------------|------|
+| `results` | Array | Yes | List of app results | 应用结果列表 |
+| `package` | String | Yes | App package name | 应用包名 |
+| `app_name` | String | Yes | App name | 应用名称 |
+| `products` | Array | Yes | List of product recommendations | 产品推荐列表 |
+| `button_deeplink` | String | Yes | Deep link for "See More" button | "查看更多"按钮的深度链接 |
+| `button_h5` | String | Yes | H5 link for "See More" button | "查看更多"按钮的H5链接 |
+
+Each product in the `products` array has the following parameters:
+
+`products`数组中的每个产品具有以下参数：
 
 | Parameter | Type | Required | Description | 描述 |
 |-----------|------|----------|-------------|------|
@@ -170,35 +183,54 @@ Parse the JSON response and extract the product recommendation data:
 ```java
 private void processResponseData(String responseData) {
     try {
-        JSONArray productsArray = new JSONArray(responseData);
-        List<ProductRecommendation> recommendations = new ArrayList<>();
+        JSONObject response = new JSONObject(responseData);
+        JSONArray resultsArray = response.getJSONArray("results");
+        List<AppRecommendation> appRecommendations = new ArrayList<>();
         
-        for (int i = 0; i < productsArray.length(); i++) {
-            JSONObject productObj = productsArray.getJSONObject(i);
+        for (int i = 0; i < resultsArray.length(); i++) {
+            JSONObject appObj = resultsArray.getJSONObject(i);
+            AppRecommendation appRecommendation = new AppRecommendation();
             
-            ProductRecommendation product = new ProductRecommendation();
-            product.setName(productObj.getString("name"));
-            product.setIconUrl(productObj.getString("icon_url"));
-            product.setPackageName(productObj.getString("package_name"));
-            product.setDeepLink(productObj.getString("deep_link"));
-            product.setH5Link(productObj.getString("h5"));
-            product.setClickLink(productObj.getString("click_link"));
-            product.setExposeLink(productObj.getString("expose_link"));
-            product.setCurrentPrice(productObj.getString("current_price"));
-            product.setOriginalPrice(productObj.getString("original_price"));
-            product.setDiscount(productObj.getString("discount"));
-            product.setCurrencyMark(productObj.getString("currency_mark"));
+            // Set app-level information
+            appRecommendation.setPackageName(appObj.getString("package"));
+            appRecommendation.setAppName(appObj.getString("app_name"));
+            appRecommendation.setButtonDeepLink(appObj.getString("button_deeplink"));
+            appRecommendation.setButtonH5Link(appObj.getString("button_h5"));
             
-            // Optional fields
-            if (productObj.has("description") && !productObj.isNull("description")) {
-                product.setDescription(productObj.getString("description"));
+            // Process products
+            JSONArray productsArray = appObj.getJSONArray("products");
+            List<ProductRecommendation> products = new ArrayList<>();
+            
+            for (int j = 0; j < productsArray.length(); j++) {
+                JSONObject productObj = productsArray.getJSONObject(j);
+                ProductRecommendation product = new ProductRecommendation();
+                
+                product.setName(productObj.getString("name"));
+                product.setIconUrl(productObj.getString("icon_url"));
+                product.setPackageName(productObj.getString("package_name"));
+                product.setDeepLink(productObj.getString("deep_link"));
+                product.setH5Link(productObj.getString("h5"));
+                product.setClickLink(productObj.getString("click_link"));
+                product.setExposeLink(productObj.getString("expose_link"));
+                product.setCurrentPrice(productObj.getString("current_price"));
+                product.setOriginalPrice(productObj.getString("original_price"));
+                product.setDiscount(productObj.getString("discount"));
+                product.setCurrencyMark(productObj.getString("currency_mark"));
+                
+                // Optional fields
+                if (productObj.has("description") && !productObj.isNull("description")) {
+                    product.setDescription(productObj.getString("description"));
+                }
+                
+                products.add(product);
             }
             
-            recommendations.add(product);
+            appRecommendation.setProducts(products);
+            appRecommendations.add(appRecommendation);
         }
         
         // Update UI with recommendations
-        updateUIWithRecommendations(recommendations);
+        updateUIWithRecommendations(appRecommendations);
         
     } catch (JSONException e) {
         Log.e("ProductRecommendation", "Error parsing response: " + e.getMessage());
@@ -214,16 +246,52 @@ Display the product recommendations in your UI:
 在您的UI中显示产品推荐：
 
 ```java
-private void updateUIWithRecommendations(List<ProductRecommendation> recommendations) {
+private void updateUIWithRecommendations(List<AppRecommendation> appRecommendations) {
     runOnUiThread(() -> {
         // Assuming you have a RecyclerView adapter
-        productAdapter.setProducts(recommendations);
+        productAdapter.setAppRecommendations(appRecommendations);
         productAdapter.notifyDataSetChanged();
         
         // Track impressions for visible products
-        trackImpressions(recommendations);
+        trackImpressions(appRecommendations);
     });
 }
+```
+
+Example of an app section layout:
+
+应用部分布局示例：
+
+```xml
+<!-- app_section.xml -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/products_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/see_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See More"
+        android:layout_gravity="end"/>
+
+</LinearLayout>
 ```
 
 Example of a product item layout:
@@ -307,21 +375,80 @@ Example of a product item layout:
 </androidx.cardview.widget.CardView>
 ```
 
+## AppRecommendation Class
+AppRecommendation类
+
+Here's a sample AppRecommendation class that can be used to store the app-level data:
+
+以下是可用于存储应用级数据的示例AppRecommendation类：
+
+```java
+public class AppRecommendation {
+    private String packageName;
+    private String appName;
+    private String buttonDeepLink;
+    private String buttonH5Link;
+    private List<ProductRecommendation> products;
+
+    // Getters and setters
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getButtonDeepLink() {
+        return buttonDeepLink;
+    }
+
+    public void setButtonDeepLink(String buttonDeepLink) {
+        this.buttonDeepLink = buttonDeepLink;
+    }
+
+    public String getButtonH5Link() {
+        return buttonH5Link;
+    }
+
+    public void setButtonH5Link(String buttonH5Link) {
+        this.buttonH5Link = buttonH5Link;
+    }
+
+    public List<ProductRecommendation> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductRecommendation> products) {
+        this.products = products;
+    }
+}
+```
+
 ### 4. Track Impressions
 4. 跟踪展示
 
-Track impressions for the displayed products:
+Track impressions for the displayed products and app sections:
 
-跟踪显示的产品的展示：
+跟踪显示的产品和应用部分的展示：
 
 ```java
-private void trackImpressions(List<ProductRecommendation> visibleProducts) {
+private void trackImpressions(List<AppRecommendation> appRecommendations) {
     ExecutorService executor = Executors.newFixedThreadPool(5);
     
-    for (ProductRecommendation product : visibleProducts) {
+    for (AppRecommendation app : appRecommendations) {
+        // Track app section impression
         executor.execute(() -> {
             try {
-                URL url = new URL(product.getExposeLink());
+                URL url = new URL(app.getButtonDeepLink());
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setConnectTimeout(5000);
@@ -329,16 +456,40 @@ private void trackImpressions(List<ProductRecommendation> visibleProducts) {
                 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Log.d("ProductRecommendation", "Impression tracked for: " + product.getName());
+                    Log.d("ProductRecommendation", "App section impression tracked for: " + app.getAppName());
                 } else {
-                    Log.e("ProductRecommendation", "Failed to track impression: " + responseCode);
+                    Log.e("ProductRecommendation", "Failed to track app section impression: " + responseCode);
                 }
                 
                 connection.disconnect();
             } catch (Exception e) {
-                Log.e("ProductRecommendation", "Error tracking impression: " + e.getMessage());
+                Log.e("ProductRecommendation", "Error tracking app section impression: " + e.getMessage());
             }
         });
+        
+        // Track product impressions
+        for (ProductRecommendation product : app.getProducts()) {
+            executor.execute(() -> {
+                try {
+                    URL url = new URL(product.getExposeLink());
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setConnectTimeout(5000);
+                    connection.setReadTimeout(5000);
+                    
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        Log.d("ProductRecommendation", "Product impression tracked for: " + product.getName());
+                    } else {
+                        Log.e("ProductRecommendation", "Failed to track product impression: " + responseCode);
+                    }
+                    
+                    connection.disconnect();
+                } catch (Exception e) {
+                    Log.e("ProductRecommendation", "Error tracking product impression: " + e.getMessage());
+                }
+            });
+        }
     }
     
     executor.shutdown();
@@ -348,9 +499,9 @@ private void trackImpressions(List<ProductRecommendation> visibleProducts) {
 ### 5. Handle User Clicks
 5. 处理用户点击
 
-Handle user clicks on product recommendations:
+Handle user clicks on product recommendations and "See More" buttons:
 
-处理用户对产品推荐的点击：
+处理用户对产品推荐和"查看更多"按钮的点击：
 
 ```java
 private void handleProductClick(ProductRecommendation product) {
@@ -377,6 +528,29 @@ private void handleProductClick(ProductRecommendation product) {
         }
     } catch (Exception e) {
         Log.e("ProductRecommendation", "Error opening product link: " + e.getMessage());
+    }
+}
+
+private void handleSeeMoreClick(AppRecommendation app) {
+    try {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        
+        // Try to use deep link first
+        if (app.getButtonDeepLink() != null && !app.getButtonDeepLink().isEmpty()) {
+            intent.setData(Uri.parse(app.getButtonDeepLink()));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+                return;
+            }
+        }
+        
+        // Fall back to H5 link if deep link fails
+        if (app.getButtonH5Link() != null && !app.getButtonH5Link().isEmpty()) {
+            intent.setData(Uri.parse(app.getButtonH5Link()));
+            startActivity(intent);
+        }
+    } catch (Exception e) {
+        Log.e("ProductRecommendation", "Error opening see more link: " + e.getMessage());
     }
 }
 
@@ -451,22 +625,32 @@ curl -X POST https://trending.devicenative.com/products \
 响应示例
 
 ```json
-[
-    {
-        "icon_url": "https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/29664078/2024/6/4/29476fa6-287f-40b9-b77c-d79a8ca6ed731717493672307VByVerageTokyoTexturedHard-SidedCabin-SizedTrolleyBag4704L11.jpg",
-        "original_price": "5999.0",
-        "currency_mark": "INR",
-        "name": "V By Verage Hard Cabin-Sized Trolley Bag",
-        "package_name": "com.myntra.android",
-        "description": "",
-        "discount": "84%",
-        "expose_link": "https://trending.devicenative.com/imp?pid=1a986682-b54a-424b-8b01-f179e1a9edd4&pck=com.myntra.android&referrer=0&uid=test-gaid-1234",
-        "current_price": "949.0",
-        "click_link": "https://trending.devicenative.com/click?url=https%3A%2F%2Fwww.myntra.com%2Fv-by-verage-trolley-bag%3FrawQuery%3DV%2520By%2520Verage%2520Trolley%2520Bag%26sort%3Dprice_asc&pid=1a986682-b54a-424b-8b01-f179e1a9edd4&pck=com.myntra.android&referrer=0&uid=test-gaid-1234",
-        "h5": "https://www.myntra.com/v-by-verage-trolley-bag?rawQuery=V%20By%20Verage%20Trolley%20Bag&sort=price_asc&utm_source=dms_trafficaffiliates&utm_medium=dms_veve_cpv&utm_campaign=dms_trafficaffiliates_veve_cpv_INV320",
-        "deep_link": "https://www.myntra.com/v-by-verage-trolley-bag?rawQuery=V%20By%20Verage%20Trolley%20Bag&sort=price_asc&utm_source=dms_trafficaffiliates&utm_medium=dms_veve_cpv&utm_campaign=dms_trafficaffiliates_veve_cpv_INV320"
-    }
-]
+{
+    "results": [
+        {
+            "package": "com.myntra.android",
+            "app_name": "Myntra",
+            "products": [
+                {
+                    "icon_url": "https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/29664078/2024/6/4/29476fa6-287f-40b9-b77c-d79a8ca6ed731717493672307VByVerageTokyoTexturedHard-SidedCabin-SizedTrolleyBag4704L11.jpg",
+                    "original_price": "5999.0",
+                    "currency_mark": "INR",
+                    "name": "V By Verage Hard Cabin-Sized Trolley Bag",
+                    "package_name": "com.myntra.android",
+                    "description": "",
+                    "discount": "84%",
+                    "expose_link": "https://trending.devicenative.com/imp?pid=1a986682-b54a-424b-8b01-f179e1a9edd4&pck=com.myntra.android&referrer=0&uid=test-gaid-1234",
+                    "current_price": "949.0",
+                    "click_link": "https://trending.devicenative.com/click?url=https%3A%2F%2Fwww.myntra.com%2Fv-by-verage-trolley-bag%3FrawQuery%3DV%2520By%2520Verage%2520Trolley%2520Bag%26sort%3Dprice_asc&pid=1a986682-b54a-424b-8b01-f179e1a9edd4&pck=com.myntra.android&referrer=0&uid=test-gaid-1234",
+                    "h5": "https://www.myntra.com/v-by-verage-trolley-bag?rawQuery=V%20By%20Verage%20Trolley%20Bag&sort=price_asc&utm_source=dms_trafficaffiliates&utm_medium=dms_veve_cpv&utm_campaign=dms_trafficaffiliates_veve_cpv_INV320",
+                    "deep_link": "https://www.myntra.com/v-by-verage-trolley-bag?rawQuery=V%20By%20Verage%20Trolley%20Bag&sort=price_asc&utm_source=dms_trafficaffiliates&utm_medium=dms_veve_cpv&utm_campaign=dms_trafficaffiliates_veve_cpv_INV320"
+                }
+            ],
+            "button_deeplink": "myntra://app?source=product_recommendation",
+            "button_h5": "https://www.myntra.com?source=product_recommendation"
+        }
+    ]
+}
 ```
 
 ## ProductRecommendation Class
