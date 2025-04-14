@@ -195,6 +195,7 @@ List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query);
 | `ratings` | The number of ratings of the advertiser's app from Google Play |
 | `downloads` | The number of downloads of the advertiser's app from Google Play |
 | `rating` | The average rating of the advertiser's app from Google Play |
+| `category` | The category of the advertiser's app from Google Play |
 
 #### Helper Methods and Implementation Notes
 
@@ -335,7 +336,7 @@ List<DNAResultItem> adUnits = dna.getOrganicAppSuggestions(6);
 | `ratings` | The number of ratings of the advertiser's app from Google Play |
 | `downloads` | The number of downloads of the advertiser's app from Google Play |
 | `rating` | The average rating of the advertiser's app from Google Play |
-
+| `category` | The category of the advertiser's app from Google Play |
 #### Helper Methods and Implementation Notes
 
 - `public ComponentName getComponentName()` - Returns a ComponentName constructed from the packageName and className. This is useful for launching the app via an Intent.
