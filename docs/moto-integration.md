@@ -142,6 +142,15 @@ config.countryOverride = BuildConfig.DEBUG ? "US" : null; // Override country in
 dna.init("2d6e21f3-1213-4aac-9cd9-06e8ec91fa4e", config);
 ```
 
+#### Update configuration after initialization
+
+```java
+DeviceNativeAds.DNAConfig config = new DeviceNativeAds.DNAConfig();
+config.debugMode = BuildConfig.DEBUG;
+config.countryOverride = BuildConfig.DEBUG ? "US" : null; // Override country in debug builds
+DeviceNativeAds.getInstance(this).updateConfig(config);
+```
+
 ### 5. Clean Up DNA Resources
 In the Application class's `onTerminate` method, clean up SDK resources:
 
