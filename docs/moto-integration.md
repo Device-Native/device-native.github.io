@@ -25,34 +25,12 @@ Below are the proposed integration steps for Motorola's implementation of the DN
 
 # DNA SDK Integration
 
-### 1. Add AAR Dependency
-The DeviceNativeAds SDK is distributed as an AAR file. Follow the instructions below to install it.
-
-#### 1.1. Download the AAR File
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-moto-v1.2.4.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-moto-v1.2.4.aar)
-
-#### 1.2 Place the AAR File in your Project
-Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If you don't have a `libs` folder, create one. It should be placed in the same folder as your `src` folder like so:
-
-```
-project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-moto-v1.2.4.aar
-```
-
-#### 1.3 Add the AAR Dependency
+### 1. Add Maven Central Dependency
 Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-moto-v1.2.4.aar')
-}
-```
-
-or some Gradle versions:
-
-```gradle
-dependencies {
-    implementation(files('libs/com.devicenative.dna-moto-v1.2.4.aar'))
+    implementation 'com.devicenative.dna:moto:1.2.6'
 }
 ```
 
@@ -114,6 +92,11 @@ The `DNAConfig` class provides several options to customize the behavior of the 
 | `disableAppUsage` | boolean | false | Disables app usage tracking functionality |
 | `countryOverride` | String | null | Overrides the country code (ISO 3166-1 alpha-2 format, e.g., "US") |
 | `disableAds` | boolean | false | Completely disables ads functionality |
+| `disableSearchInstallAds` | boolean | false | Disables search install ads |
+| `disableSearchAds` | boolean | false | Disables all search ads |
+| `disableRecomInstallAds` | boolean | false | Disables recommended install ads |
+| `disableRecomAds` | boolean | false | Disables all recommended ads |
+| `carrierValue` | String | null | Sets the carrier value for the device |
 
 #### Example: Disabling Ads for Certain Users
 
@@ -176,7 +159,8 @@ This method call will return a list of DNAResultItem objects which can be shown 
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query);
+// Replace 10 with the actual number of results you intend to display/trigger impressions for
+List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query, "organic search", 10);
 ```
 
 #### Key Fields of DNAResultItem Class
