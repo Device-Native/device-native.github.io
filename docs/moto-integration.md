@@ -6,7 +6,7 @@ hide:
 
 # DNA - Motorola Integration Guide
 
-**Date:** 2025-02-04
+**Date:** 2025-05-20
 
 Below are the proposed integration steps for Motorola's implementation of the DNA SDK.
 
@@ -30,7 +30,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.devicenative.dna:moto:1.2.6'
+    implementation 'com.devicenative.dna:moto:1.2.7'
 }
 ```
 
