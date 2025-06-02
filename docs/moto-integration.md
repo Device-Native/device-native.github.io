@@ -30,7 +30,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.devicenative.dna:moto:1.2.7'
+    implementation 'com.devicenative.dna:moto:1.3.0'
 }
 ```
 
@@ -173,6 +173,7 @@ List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query, "organic sea
 | `appName` | The name of the advertiser's app |
 | `className` | The class name of the activity to be shown to the user. Can be null! |
 | `userHandle` | The user handle of the app. Can be null! |
+| `uId` | The integer user id to retrieve the actual user handle. Can be null! |
 | `title` | The ad creative title to be shown to the user |
 | `description` | The ad creative description to be shown to the user. Can be null! |
 | `iconUrl` | The ad creative icon URL to be shown to the user. Can be null! |
@@ -215,7 +216,7 @@ if (!resultItem.isInstalled) {
         runOnUiThread(() -> {
           if (icon == null) {
             try {
-              Drawable backupIcon = getPackageManager().getApplicationIcon(resultItem.packageName);
+              Drawable backupIcon = getPackageManager().getActivityIcon(resultItem.getComponentName());
               itemIcon.setImageDrawable(backupIcon);
             } catch (Exception e) {
               Log.e("SearchActivity", "Error loading app icon: " + e.getMessage());
@@ -230,7 +231,7 @@ if (!resultItem.isInstalled) {
     @Override
     public void onError(String message) {
       try {
-        Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
+        Drawable icon = getPackageManager().getActivityIcon(resultItem.getComponentName());
         itemIcon.setImageDrawable(icon);
       } catch (Exception e) {
         Log.e("SearchActivity", "Error loading app icon: " + e.getMessage());
@@ -242,7 +243,7 @@ if (!resultItem.isInstalled) {
   // Drawable icon = resultItem.loadCreativeDrawable();
 } else {
   // if app is installed, show the app icon
-  Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
+  Drawable icon = getPackageManager().getActivityIcon(resultItem.getComponentName());
   itemIcon.setImageDrawable(icon);
 }
 
@@ -314,6 +315,7 @@ List<DNAResultItem> adUnits = dna.getOrganicAppSuggestions(6);
 | `appName` | The name of the advertiser's app |
 | `className` | The class name of the activity to be shown to the user. Can be null! |
 | `userHandle` | The user handle of the app. Can be null! |
+| `uId` | The integer user id to retrieve the actual user handle. Can be null! |
 | `title` | The ad creative title to be shown to the user |
 | `description` | The ad creative description to be shown to the user. Can be null! |
 | `iconUrl` | The ad creative icon URL to be shown to the user. Can be null! |
@@ -356,7 +358,7 @@ if (!resultItem.isInstalled) {
         runOnUiThread(() -> {
           if (icon == null) {
             try {
-              Drawable backupIcon = getPackageManager().getApplicationIcon(resultItem.packageName);
+              Drawable backupIcon = getPackageManager().getActivityIcon(resultItem.getComponentName());
               itemIcon.setImageDrawable(backupIcon);
             } catch (Exception e) {
               Log.e("RecommendedAppsActivity", "Error loading app icon: " + e.getMessage());
@@ -371,7 +373,7 @@ if (!resultItem.isInstalled) {
     @Override
     public void onError(String message) {
       try {
-        Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
+        Drawable icon = getPackageManager().getActivityIcon(resultItem.getComponentName());
         itemIcon.setImageDrawable(icon);
       } catch (Exception e) {
         Log.e("RecommendedAppsActivity", "Error loading app icon: " + e.getMessage());
@@ -380,7 +382,7 @@ if (!resultItem.isInstalled) {
   });
 } else {
   // if app is installed, show the app icon
-  Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
+  Drawable icon = getPackageManager().getActivityIcon(resultItem.getComponentName());
   itemIcon.setImageDrawable(icon);
 }
 
