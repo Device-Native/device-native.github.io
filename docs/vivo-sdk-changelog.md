@@ -117,3 +117,18 @@ hide:
 - Latency improvements for ad serving through warm ups of key service
 - Support new macro for passing product source to URL
 - Security improvement for parseUri on link redirection
+
+## [**vivo-1.2.4**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.4.aar) released 5/3/2025
+
+- Improve wake broadcast for better data synchronization
+- Reduce unnecessary event logging
+- Improve debug mode for first session
+
+## [**vivo-1.3.0**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.0.aar) released 6/25/2025
+
+- Improved support for app enabling/disabling
+- Improved support for work profile apps, removing and enabling profiles
+- Better non-English language support for search query matching
+- App entities are now for launch activities in apps, rather than just package names aligning better with most OEM launcher UX
+- 1 character length query search cache delivering instant first results
+- Fixed some search query cache bugs, where a cache could be stale when apps were enabled/disabled
