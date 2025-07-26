@@ -132,3 +132,9 @@ hide:
 - App entities are now for launch activities in apps, rather than just package names aligning better with most OEM launcher UX
 - 1 character length query search cache delivering instant first results
 - Fixed some search query cache bugs, where a cache could be stale when apps were enabled/disabled
+
+## [**vivo-1.3.1**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.1.aar) released 7/25/2025
+
+- Better support for upgrade path for pre-1.3.0 SDK versions
+- Minor improvements to the isInstalled logic
+- Minor bug fixes on new features for 1.3.0
