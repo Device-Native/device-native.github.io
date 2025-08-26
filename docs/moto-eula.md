@@ -1,6 +1,6 @@
 # DNA SDK for Moto — End-User License Agreement (EULA)
 
-**Version:** 1.4.14  
+**Version:** 1.4.15  
 **Build Date:** August 26, 2025  
 **SPDX:** `LicenseRef-DNA-EULA-Proprietary`  
 **Coordinates:** `com.devicenative.dna:moto:1.4.15`  
