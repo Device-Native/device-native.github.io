@@ -3,7 +3,7 @@
 **Version:** 1.4.14  
 **Build Date:** August 26, 2025  
 **SPDX:** `LicenseRef-DNA-EULA-Proprietary`  
-**Coordinates:** `com.devicenative.dna:moto:1.4.14`  
+**Coordinates:** `com.devicenative.dna:moto:1.4.15`  
 **Owner:** Device Native, Inc.  
 **Contact:** oss@devicenative.com
 
