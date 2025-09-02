@@ -138,3 +138,12 @@ hide:
 - Better support for upgrade path for pre-1.3.0 SDK versions
 - Minor improvements to the isInstalled logic
 - Minor bug fixes on new features for 1.3.0
+
+## [**vivo-1.3.2**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.2.aar) released 9/1/2025
+
+- Better handling in case of local database corruption
+- Improved local database performance
+- Significant improvement in data refresh memory efficiency
+- Better handling of ad link latency (timeouts, network detection)
+- Improved service connectivity management
+- Addressed risk in cross-service file communication (user agent sync)
