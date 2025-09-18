@@ -147,3 +147,8 @@ hide:
 - Better handling of ad link latency (timeouts, network detection)
 - Improved service connectivity management
 - Addressed risk in cross-service file communication (user agent sync)
+
+## [**vivo-1.3.3**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.3.aar) released 9/18/2025
+
+- Removed some unnecessary logging
+- Upgraded the QuickJS library to support modern Android requirements
