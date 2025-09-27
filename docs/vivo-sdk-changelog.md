@@ -152,3 +152,7 @@ hide:
 
 - Removed some unnecessary logging
 - Upgraded the QuickJS library to support modern Android requirements
+
+## [**vivo-1.3.4**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.4.aar) released 9/26/2025
+
+- Try/catch around shortcut calls that crash in device-lock scenarios
