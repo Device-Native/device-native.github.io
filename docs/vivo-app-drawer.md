@@ -36,7 +36,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.3.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.3.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.4.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.4.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -47,7 +47,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.2.3.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.3.4.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -59,7 +59,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.2.3.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.3.4.aar')
 }
 ```
 
@@ -69,7 +69,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.2.3.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.3.4.aar'))
 }
 ```
 
@@ -116,7 +116,7 @@ public void onCreate() {
     super.onCreate();
 
     DeviceNativeAds dna = DeviceNativeAds.getInstance(this);
-    dna.init("4d37ce02-c110-4b06-ad97-9241e4163dd5");
+    dna.init("6a8c19b4-452a-485a-ab8e-e056efd568de");
 
     // any other code you have
 }
@@ -158,16 +158,16 @@ Adding this step to indicate that the user has opened the App Drawer app, which 
 
 添加此步骤以表明用户已打开 App Drawer 应用，这是以下逻辑的触发器。
 
-### 2. Call the DNA SDK to get ads for Slot 4 and Slot 8
-2 调用DNA SDK获取Slot 4和Slot 8的广告
+### 2. Call the DNA SDK to get top 6 re-engagement results
+2 调用 DNA SDK 获取前 6 个重新参与结果
 
-This method call will return a list of DNAResultItem objects which will be used for Slot 4 and Slot 8. It will return 2 total results which can be used for the 2 available slots.
+This method call returns up to 6 DNAResultItem objects ordered by relevance. You'll use them to replace items in positions 1–3 and 5–7; any remaining items will be used to fill positions 4 and 8.
 
-此方法调用将返回一组 DNAResultItem 对象，用于 Slot 4 和 Slot 8。它将返回可用于 2 个可用槽位的 2 个总结果。
+此方法调用将返回最多 6 个按相关性排序的 DNAResultItem。您将使用它们优先替换位置 1–3 和 5–7；剩余结果用于填充位置 4 和 8。
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAResultItem> adUnits = dna.getAdsForCache(2, "app drawer, slot 4 and 8");
+List<DNAResultItem> dnaResults = dna.getAdsForCache(6, "app drawer, recommended apps");
 ```
 
 #### Note
@@ -207,101 +207,97 @@ In this step, vivo will retrieve its own list of recommended apps. This is the c
 
 在此步骤中，vivo将检索其自己的推荐应用列表。这是当前为 App Drawer 应用的“推荐应用”部分提供动力的代码。
 
-### 4. Deduplicate DNA results from vivo's organic results
-4 为3种场景拆分DNA结果
+### 4. Merge DNA results into vivo's list (prioritize 1–3 and 5–7)
+4 将 DNA 结果合并到 vivo 列表中（优先替换 1–3 和 5–7）
 
-vivo should prioritize the DNA results over its own organic results, and should therefore should find and remove all of the duplicate package names from their own results.
+Replace duplicates by package name in positions 1–3 and 5–7 with DNA results (in order). Then fill fallback slots 4 and 8 with any remaining DNA results.
 
-vivo 应该优先考虑 DNA 结果而不是其自己的有机结果，因此应该找到并删除其结果中的所有重复包名。
+按包名在位置 1–3 和 5–7 中查找重复项，用 DNA 结果（按顺序）替换；再用剩余的 DNA 结果填充位置 4 和 8。
 
 ```
-function removeDuplicateResults(vivoResults, dnaResults):
-    # Create a set to store package names from DNA results for quick lookup
-    dnaPackageNames = set()
+function mergeDnaIntoVivo(vivoResults, dnaResults):
+    # vivoResults: existing list driving Recommended Apps (length >= 8)
+    # dnaResults: top 6 DNA results ordered by priority
 
-    # Populate the set with package names from DNA results
-    for dnaResult in dnaResults:
-        dnaPackageNames.add(dnaResult.packageName)
+    priorityIdx = [0, 1, 2, 4, 5, 6]   # positions 1–3 and 5–7 (0-based)
+    fallbackIdx = [3, 7]               # positions 4 and 8 (0-based)
 
-    # Create a new list to store non-duplicate vivo results
-    filteredVivoResults = []
+    out = vivoResults.copy()
+    usedPackages = set()
+    remaining = []
 
-    # Iterate over vivo's results
-    for vivoResult in vivoResults:
-        # Check if the package name is not in the DNA package names set
-        if vivoResult.packageName not in dnaPackageNames:
-            # If not a duplicate, add to the filtered list
-            filteredVivoResults.append(vivoResult)
+    # Replacement pass — replace duplicates in priority slots
+    for dna in dnaResults:
+        replaced = false
+        for idx in priorityIdx:
+            if idx >= len(out):
+                continue
+            if out[idx].packageName == dna.packageName:
+                out[idx] = dna
+                usedPackages.add(dna.packageName)
+                replaced = true
+                break
+        if not replaced:
+            remaining.append(dna)
 
-    # Return the filtered list of vivo results
-    return filteredVivoResults 
+    # Fallback pass — fill slots 4 and 8 with remaining dna (in order)
+    rem = 0
+    for idx in fallbackIdx:
+        if idx >= len(out):
+            continue
+        while rem < len(remaining) and remaining[rem].packageName in usedPackages:
+            rem += 1
+        if rem < len(remaining):
+            out[idx] = remaining[rem]
+            usedPackages.add(remaining[rem].packageName)
+            rem += 1
+
+    # Ensure no duplicates across the first 8 results by package name
+    seen = set()
+    for i in range(0, min(8, len(out))):
+        pkg = out[i].packageName
+        if pkg in seen:
+            # find next non-duplicate from vivoResults (beyond position 8)
+            j = 8
+            while j < len(vivoResults) and vivoResults[j].packageName in seen:
+                j += 1
+            if j < len(vivoResults):
+                out[i] = vivoResults[j]
+                pkg = out[i].packageName
+        seen.add(pkg)
+
+    return out[0:8]
 ```
 
-If there are fewer than 2 duplicates, then vivo should remove the lowest relevant results to make room for the 2 DNA results.
+If there are fewer than 2 duplicates, the merge logic above will naturally place remaining DNA results into slots 4 and 8.
 
-如果少于 2 个重复项，则 vivo 应该删除最低相关的结果以腾出空间给 2 个 DNA 结果。
+如果少于 2 个重复项，上述合并逻辑会自然地将剩余的 DNA 结果放入位置 4 和 8。
 
 ### 5. Load ad creative in the UI
 5 在UI中加载广告创意
 
-Below shows an example implementation of loading the ad creative in the UI, with DNA method calls.
+Below is a simple example of loading the app icon from PackageManager (these apps are installed).
 
-以下显示了在 UI 中加载广告创意的示例实现，使用 DNA 方法调用。
+以下示例仅演示从 PackageManager 加载应用图标（这些应用已安装）。
 
 ```java
 ImageView itemIcon = itemView.findViewById(R.id.item_icon);
 TextView itemTitle = itemView.findViewById(R.id.item_title);
 TextView itemDescription = itemView.findViewById(R.id.item_description);
 
-// handle loading app icon async if app uninstalled
-// 如果应用未安装，异步加载应用图标
-if (!resultItem.isInstalled) {
-  resultItem.loadCreativeDrawableAsync(this, new DNAResultItem.ImageCallback() {
-    @Override
-    public void onImageLoaded(Drawable icon) {
-      new Thread(() -> {
-        runOnUiThread(() -> {
-          if (icon == null) {
-            try {
-              Drawable backupIcon = getPackageManager().getApplicationIcon(resultItem.packageName);
-              itemIcon.setImageDrawable(backupIcon);
-            } catch (Exception e) {
-              Log.e("SearchActivity", "Error loading app icon: " + e.getMessage());
-            }
-          } else {
-            itemIcon.setImageDrawable(icon);
-          }
-        });
-      }).start();
-    }
-
-    @Override
-    public void onError(String message) {
-      try {
-        Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
-        itemIcon.setImageDrawable(icon);
-      } catch (Exception e) {
-        Log.e("SearchActivity", "Error loading app icon: " + e.getMessage());
-      }
-    }
-  });
-
-  // Note, if convenient, there is a sync method to get the icon but not recommended for UI thread
-  // Drawable icon = resultItem.loadCreativeDrawable();
-  // 注意，如果方便的话，有一个同步方法可以获取图标，但不建议在UI线程中使用
-  // Drawable icon = resultItem.loadCreativeDrawable();
-} else {
-  // if app is installed, show the app icon
-  // 如果应用已安装，显示应用图标
+try {
+  // 因为应用已安装，所以直接从 PackageManager 加载图标
   Drawable icon = getPackageManager().getApplicationIcon(resultItem.packageName);
   itemIcon.setImageDrawable(icon);
+} catch (Exception e) {
+  Log.e("AppDrawerActivity", "Error loading app icon: " + e.getMessage());
 }
 
 itemTitle.setText(resultItem.title);
 ```
 
 ### 6. Fire impressions for the ads
-6 使用新的位置标签为广告触发展示
+6 为广告触发展示
 
 It is important that you fire impressions for the ads when they are shown to the user. This is how DNA tracks the performance of the ads, but also manages frequency caps, targeting and many other functions.
 
@@ -313,7 +309,7 @@ dna.fireImpressions(dnaResultsShown);
 ```
 
 ### 7. Send user click to DNA for routing
-7 将用户点击发送给DNA进行路由
+7 将用户点击发送给 DNA 进行路由
 
 After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters.
 
@@ -324,21 +320,21 @@ DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
 DeviceNativeAds.getInstance(this).fireClickAndRoute(resultItem,  new DeviceNativeClickHandler() {
   @Override
   public void onClickServerCompleted() {
-    Log.i("GlobalSearchActivity", "Click tracking completed successfully.");
+    Log.i("AppDrawerActivity", "Click tracking completed successfully.");
   }
 
   @Override
   public void onClickRouterCompleted(boolean didRoute) {
     if (!didRoute) {
-      Log.e("GlobalSearchActivity", "Error routing click: No activity found to handle the click.");
+      Log.e("AppDrawerActivity", "Error routing click: No activity found to handle the click.");
     } else {
-      Log.i("GlobalSearchActivity", "Click routed successfully.");
+      Log.i("AppDrawerActivity", "Click routed successfully.");
     }
   }
 
   @Override
   public void onFailure(int errorCode, String errorMessage) {
-    Log.e("GlobalSearchActivity", "Error clicking ad: " + errorMessage);
+    Log.e("AppDrawerActivity", "Error clicking ad: " + errorMessage);
   }
 });
 ```

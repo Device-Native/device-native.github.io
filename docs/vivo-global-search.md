@@ -358,9 +358,9 @@ if (!resultItem.isInstalled) {
   });
 
   // Note, if convenient, there is a sync method to get the icon but not recommended for UI thread
-  // Drawable icon = resultItem.loadCreativeDrawable();
+  // Drawable icon = resultItem.loadCreativeDrawable(this);
   // 注意，如果方便的话，有一个同步方法可以获取图标，但不建议在UI线程中使用
-  // Drawable icon = resultItem.loadCreativeDrawable();
+  // Drawable icon = resultItem.loadCreativeDrawable(this);
 } else {
   // if app is installed, show the app icon
   // 如果应用已安装，显示应用图标
@@ -378,7 +378,7 @@ if (resultItem.description == null || resultItem.description.isEmpty()) {
 ```
 
 ### 6. Fire impressions for the ads with the new placement tag
-6 使用新的位置标签为广告触发展示
+6 为广告触发展示（使用新的位置标签）
 
 It is important that you fire impressions for the ads when they are shown to the user. This is how DNA tracks the performance of the ads, but also manages frequency caps, targeting and many other functions.
 
@@ -496,7 +496,7 @@ for (DNAResultItem resultItem : adUnits) {
   } else {
     // Candidate for Scenario 6 (uninstalled apps)
     // 候选场景6（未安装的应用）
-    scenario6Results.add(resultItem);
+    scenario6Ads.add(resultItem);
   }
 }
 ```
@@ -648,9 +648,9 @@ if (!resultItem.isInstalled) {
   });
 
   // Note, if convenient, there is a sync method to get the icon but not recommended for UI thread
-  // Drawable icon = resultItem.loadCreativeDrawable();
+  // Drawable icon = resultItem.loadCreativeDrawable(this);
   // 注意，如果方便的话，有一个同步方法可以获取图标，但不建议在UI线程中使用
-  // Drawable icon = resultItem.loadCreativeDrawable();
+  // Drawable icon = resultItem.loadCreativeDrawable(this);
 } else {
   // if app is installed, show the app icon
   // 如果应用已安装，显示应用图标
@@ -667,12 +667,12 @@ if (resultItem.description == null || resultItem.description.isEmpty()) {
 }
 ```
 
-#### 8.1 Access app ratings, downloads, and reviews
-8.1 访问应用评分、下载次数和评论
+#### 8.1 Access app ratings and downloads
+8.1 访问应用评分和下载次数
 
-You can access the ratings, downloads, and reviews of the advertiser's app from Google Play by using the `ratings`, `downloads`, and `reviews` fields in the `DNAResultItem` object.
+You can access the ratings, downloads, and average rating of the advertiser's app from Google Play by using the `ratings`, `downloads`, and `rating` fields in the `DNAResultItem` object.
 
-您可以通过使用 `DNAResultItem` 对象中的 `ratings`、`downloads` 和 `reviews` 字段来访问广告主应用在 Google Play 上的评分、下载次数和评论。
+您可以通过使用 `DNAResultItem` 对象中的 `ratings`、`downloads` 和 `rating` 字段来访问广告主应用在 Google Play 上的评分次数、下载次数和平均评分。
 
 ### 9. Send user click to DNA for routing for either scenario
 9 将用户点击发送给DNA进行路由
