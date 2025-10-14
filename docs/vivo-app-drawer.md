@@ -6,7 +6,7 @@ hide:
 
 # DNA - vivo Integration Proposals
 
-**Date:** 2024-10-24
+**Date:** 2025-10-14
 
 Below are the proposed integration steps to accommodate vivo's App Drawer integration product spec.
 
