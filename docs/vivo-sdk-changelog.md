@@ -156,3 +156,9 @@ hide:
 ## [**vivo-1.3.4**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.4.aar) released 9/26/2025
 
 - Try/catch around shortcut calls that crash in device-lock scenarios
+
+## [**vivo-1.3.5**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.5.aar) released 10/15/2025
+
+- Improved network connection handling for reduced bandwidth usage and improved latency
+- Fixed a bug introduced with the shortcut logic in 1.3.4
+- Disabled shortcuts and notifications by default.
