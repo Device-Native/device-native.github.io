@@ -162,3 +162,10 @@ hide:
 - Improved network connection handling for reduced bandwidth usage and improved latency
 - Fixed a bug introduced with the shortcut logic in 1.3.4
 - Disabled shortcuts and notifications by default.
+
+## [**vivo-1.3.6**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.6.aar) released 10/30/2025
+
+- Overhaul cache refresh logic to reduce battery consumption
+- Improved usage refresh logic to reduce battery consumption
+- DB hardening to handle case of corrupt file
+- Less frequent agg stats sync to minimize network usage
