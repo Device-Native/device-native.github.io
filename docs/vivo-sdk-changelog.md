@@ -169,3 +169,8 @@ hide:
 - Improved usage refresh logic to reduce battery consumption
 - DB hardening to handle case of corrupt file
 - Less frequent agg stats sync to minimize network usage
+
+## [**vivo-1.3.7**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.7.aar) released 11/3/2025
+
+- Dramatic improvement in CPU usage, and reduction in latency for result serving
+- Smarter timing of local data refresh to reduce battery consumption
