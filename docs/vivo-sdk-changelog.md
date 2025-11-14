@@ -174,3 +174,9 @@ hide:
 
 - Dramatic improvement in CPU usage, and reduction in latency for result serving
 - Smarter timing of local data refresh to reduce battery consumption
+
+## [**vivo-1.3.8**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.8.aar) released 11/14/2025
+
+- Reduced overhead of init() call and data service restart
+- Further improved from 1.3.7 cache for latency improvements
+- GZIP on data uploads for reduced bandwidth usage
