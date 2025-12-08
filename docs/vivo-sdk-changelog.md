@@ -12,6 +12,7 @@ hide:
 - Ad serving cache improvements
 
 **中文翻译：**
+
 - 替换并更新了 QuickJS 的 Android 包装层
 - 改进广告投放缓存
 
@@ -22,6 +23,7 @@ hide:
 - Improved data service connectivity and refresh logic
 
 **中文翻译：**
+
 - 改进搜索查询缓存
 - 更智能的缓存失效机制
 - 改进数据服务的连接性与刷新逻辑
@@ -33,6 +35,7 @@ hide:
 - GZIP on data uploads for reduced bandwidth usage
 
 **中文翻译：**
+
 - 降低 init() 调用和数据服务重启的开销
 - 在 1.3.7 的缓存优化基础上进一步降低延迟
 - 对数据上传启用 GZIP 以减少带宽使用
@@ -43,6 +46,7 @@ hide:
 - Smarter timing of local data refresh to reduce battery consumption
 
 **中文翻译：**
+
 - 显著改善 CPU 使用率并降低结果提供延迟
 - 更智能地安排本地数据刷新时间以降低电量消耗
 
@@ -54,6 +58,7 @@ hide:
 - Less frequent agg stats sync to minimize network usage
 
 **中文翻译：**
+
 - 全面改造缓存刷新逻辑以降低电量消耗
 - 优化使用数据刷新逻辑以降低电量消耗
 - 强化数据库以应对文件损坏场景
@@ -66,6 +71,7 @@ hide:
 - Disabled shortcuts and notifications by default.
 
 **中文翻译：**
+
 - 改进网络连接处理以降低带宽占用并缩短延迟
 - 修复 1.3.4 中快捷方式逻辑引入的缺陷
 - 默认禁用快捷方式和通知
@@ -75,6 +81,7 @@ hide:
 - Try/catch around shortcut calls that crash in device-lock scenarios
 
 **中文翻译：**
+
 - 在可能因设备锁定而崩溃的快捷方式调用外部添加 try/catch
 
 ## [**vivo-1.3.3**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.3.aar) released 9/18/2025
@@ -83,6 +90,7 @@ hide:
 - Upgraded the QuickJS library to support modern Android requirements
 
 **中文翻译：**
+
 - 移除部分不必要的日志
 - 升级 QuickJS 库以满足现代 Android 要求
 
@@ -96,6 +104,7 @@ hide:
 - Addressed risk in cross-service file communication (user agent sync)
 
 **中文翻译：**
+
 - 更好地处理本地数据库损坏情况
 - 提升本地数据库性能
 - 显著提升数据刷新时的内存效率
@@ -110,6 +119,7 @@ hide:
 - Minor bug fixes on new features for 1.3.0
 
 **中文翻译：**
+
 - 更好地支持 1.3.0 之前版本的升级路径
 - 对 isInstalled 逻辑进行小幅改进
 - 修复 1.3.0 新特性相关的一些小问题
@@ -124,6 +134,7 @@ hide:
 - Fixed some search query cache bugs, where a cache could be stale when apps were enabled/disabled
 
 **中文翻译：**
+
 - 提升应用启用/禁用的支持能力
 - 改进工作配置文件应用的管理，包括移除与启用
 - 增强非英语语言的搜索匹配支持
@@ -138,6 +149,7 @@ hide:
 - Improve debug mode for first session
 
 **中文翻译：**
+
 - 改进唤醒广播以提升数据同步
 - 减少不必要的事件日志
 - 优化首次会话的调试模式
@@ -149,6 +161,7 @@ hide:
 - Security improvement for parseUri on link redirection
 
 **中文翻译：**
+
 - 通过预热关键服务改善广告投放延迟
 - 支持用于将产品来源传递到 URL 的新宏
 - 提升链接重定向中 parseUri 的安全性
@@ -158,6 +171,7 @@ hide:
 - Minor memory optimizations
 
 **中文翻译：**
+
 - 进行少量内存优化
 
 ## [**vivo-1.2.1**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar) released 2/20/2025
@@ -165,6 +179,7 @@ hide:
 - Implemented native fallback support for search and suggestions
 
 **中文翻译：**
+
 - 实现搜索与建议的原生回退支持
 
 ## [**vivo-1.2.0**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.0.aar) released 2/4/2025
@@ -173,6 +188,7 @@ hide:
 - Restructured network sync to improve performance and reduce data transfer
 
 **中文翻译：**
+
 - 新增克隆与多用户应用支持
 - 重构网络同步以提升性能并减少数据传输
 
@@ -181,6 +197,7 @@ hide:
 - More robust coverage of initialization to handle unpredictable calls to destroy()
 
 **中文翻译：**
+
 - 加强初始化覆盖范围，以应对不可预测的 destroy() 调用
 
 ## [**vivo-1.1.16**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar) released 12/10/2024
@@ -188,6 +205,7 @@ hide:
 - Added support for destination URL override
 
 **中文翻译：**
+
 - 新增目标 URL 覆盖支持
 
 ## [**vivo-1.1.15**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar) released 12/4/2024
@@ -195,6 +213,7 @@ hide:
 - Added support for gzip for reduced bandwidth usage
 
 **中文翻译：**
+
 - 新增 gzip 支持以减少带宽使用
 
 ## [**vivo-1.1.14**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.14.aar) released 11/24/2024
@@ -206,6 +225,7 @@ hide:
 - Query parameters for market URL rewrites
 
 **中文翻译：**
+
 - 将应用安装推广的链接改回使用 market:// URL
 - 修复处理重复点击的缺陷
 - 在非调试模式下移除日志
@@ -219,6 +239,7 @@ hide:
 - Added support for intent-based deep linking
 
 **中文翻译：**
+
 - 修复新应用未分配用户画像的问题
 - 在部分场景下改善链接重定向延迟
 - 新增基于 Intent 的深度链接支持
@@ -229,6 +250,7 @@ hide:
 - Change of direct linking for app install campaigns
 
 **中文翻译：**
+
 - 更好地管理本地 GAID
 - 调整应用安装推广的直接链接策略
 
@@ -237,6 +259,7 @@ hide:
 - Reduced the time taken to retrieve the Chrome User Agent in the separate process to minimize the chance of collisions.
 
 **中文翻译：**
+
 - 缩短在独立进程中获取 Chrome User Agent 的时间，降低冲突概率
 
 ## [**vivo-1.1.10**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.10.aar) released 10/20/2024
@@ -245,6 +268,7 @@ hide:
 - Implemented better launching of User Agent collection service to handle background restrictions
 
 **中文翻译：**
+
 - 修复使用应用名称替代标题的缺陷
 - 改进 User Agent 收集服务的启动方式以适应后台限制
 
@@ -255,6 +279,7 @@ hide:
 - Some performance improvements to ad serving
 
 **中文翻译：**
+
 - 新增 DNAResultItem.className 和 DNAResultItem.getComponentName 以支持替代的过滤/去重策略
 - SDK 现已支持工作配置文件管理
 - 提升广告投放性能
@@ -264,6 +289,7 @@ hide:
 - Fixed potential null pointer exception in profile change monitor
 
 **中文翻译：**
+
 - 修复画像变更监视器中潜在的空指针异常
 
 ## [**vivo-1.1.7**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.7.aar) released 9/26/2024
@@ -273,6 +299,7 @@ hide:
 - Added code to prevent duplicate data orchestrator services from running
 
 **中文翻译：**
+
 - 增强 User Agent 相关的进程间通信可靠性
 - 降低读取 User Agent 时的资源消耗
 - 新增逻辑以防止数据编排服务重复运行
@@ -282,6 +309,7 @@ hide:
 - Made DNAResultItem Parceable
 
 **中文翻译：**
+
 - 使 DNAResultItem 实现 Parcelable 接口
 
 ## [**vivo-1.1.5**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.5.aar) released 9/5/2024
@@ -290,6 +318,7 @@ hide:
 - Isolated Chrome User Agent fetch to process in order to constrain memory consumption
 
 **中文翻译：**
+
 - 初始化过程的持续内存占用减少约 20MB
 - 将 Chrome User Agent 的获取隔离到单独进程以限制内存消耗
 
@@ -300,6 +329,7 @@ hide:
 - Improved performance of Google Play to Custom Store remapping
 
 **中文翻译：**
+
 - 大多数应用安装点击现在可即时响应
 - 尽可能并行处理跟踪链接与 Play 商店重定向
 - 改进从 Google Play 到自定义商店的重映射性能
@@ -312,6 +342,7 @@ hide:
 - Implemented deep linking for install ads that are already installed
 
 **中文翻译：**
+
 - 为高概率点击预取重定向
 - 缓存并复用重定向结果以提升重复点击性能
 - 改进线程性能以加速点击响应
@@ -324,6 +355,7 @@ hide:
 - Exposed app ratings, downloads, and reviews in DNAResultItem
 
 **中文翻译：**
+
 - 新增远程控制以禁用应用使用统计收集
 - 在链接路由场景下改进弱网处理
 - 在 DNAResultItem 中暴露应用评分、下载量与评价
@@ -333,6 +365,7 @@ hide:
 - Added ability to register impression manually for DNA search results (already existed for recommendations)
 
 **中文翻译：**
+
 - 为 DNA 搜索结果新增手动注册曝光的能力（推荐结果已支持）
 
 ## [**vivo-1.1.0**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.0.aar) released 8/19/2024
@@ -341,5 +374,6 @@ hide:
 - Performance optimizations for vivo Global Search use case
 
 **中文翻译：**
+
 - 定制版 vivo DNA SDK 的首次发布
 - 针对 vivo 全局搜索场景进行性能优化
