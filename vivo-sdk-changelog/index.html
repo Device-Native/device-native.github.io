@@ -1,0 +1,1245 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The integration guide for Device Native's SDK">
+      
+      
+        <meta name="author" content="Device Native, Inc">
+      
+      
+        <link rel="canonical" href="https://device-native.github.io/vivo-sdk-changelog/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>vivo DNA SDK Changelog - Device Native Integration Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vivo-dna-sdk-changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Device Native Integration Documentation" class="md-header__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Device Native Integration Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              vivo DNA SDK Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Device Native Integration Documentation" class="md-nav__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    Device Native Integration Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrate-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrate Android SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-organic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organic/Ads - Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-organic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organic/Ads - Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-ads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hot-app-suggestions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Hot Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-ads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1310-released-1272025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.10 released 12/7/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-139-released-11242025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.9 released 11/24/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-138-released-11142025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.8 released 11/14/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-137-released-1132025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.7 released 11/3/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-136-released-10302025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.6 released 10/30/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-135-released-10152025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.5 released 10/15/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-134-released-9262025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.4 released 9/26/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-133-released-9182025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.3 released 9/18/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-132-released-912025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.2 released 9/1/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-131-released-7252025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.1 released 7/25/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-130-released-6252025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.3.0 released 6/25/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-124-released-532025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.2.4 released 5/3/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-123-released-3142025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.2.3 released 3/14/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-122-released-3142025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.2.2 released 3/14/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-121-released-2202025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.2.1 released 2/20/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-120-released-242025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.2.0 released 2/4/2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1117-released-12122024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.17 released 12/12/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1116-released-12102024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.16 released 12/10/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1115-released-1242024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.15 released 12/4/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1114-released-11242024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.14 released 11/24/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1113-released-1172024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.13 released 11/7/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1112-released-1152024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.12 released 11/5/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1111-released-1112024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.11 released 11/1/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-1110-released-10202024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.10 released 10/20/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-119-released-1082024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.9 released 10/8/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-118-released-9302024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.8 released 9/30/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-117-released-9262024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.7 released 9/26/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-116-released-992024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.6 released 9/9/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-115-released-952024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.5 released 9/5/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-114-released-8262024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.4 released 8/26/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-113-released-8232024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.3 released 8/23/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-112-released-8222024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.2 released 8/22/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-111-released-8202024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.1 released 8/20/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vivo-110-released-8192024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vivo-1.1.0 released 8/19/2024
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="vivo-dna-sdk-changelog">vivo DNA SDK Changelog</h1>
+<h2 id="vivo-1310-released-1272025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.10.aar"><strong>vivo-1.3.10</strong></a> released 12/7/2025</h2>
+<ul>
+<li>Replaced and updated the Android wrapper on QuickJS</li>
+<li>Ad serving cache improvements</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>替换并更新了 QuickJS 的 Android 包装层</li>
+<li>改进广告投放缓存</li>
+</ul>
+<h2 id="vivo-139-released-11242025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.9.aar"><strong>vivo-1.3.9</strong></a> released 11/24/2025</h2>
+<ul>
+<li>Improved search query cache</li>
+<li>Smarter cache invalidation</li>
+<li>Improved data service connectivity and refresh logic</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>改进搜索查询缓存</li>
+<li>更智能的缓存失效机制</li>
+<li>改进数据服务的连接性与刷新逻辑</li>
+</ul>
+<h2 id="vivo-138-released-11142025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.8.aar"><strong>vivo-1.3.8</strong></a> released 11/14/2025</h2>
+<ul>
+<li>Reduced overhead of init() call and data service restart</li>
+<li>Further improved from 1.3.7 cache for latency improvements</li>
+<li>GZIP on data uploads for reduced bandwidth usage</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>降低 init() 调用和数据服务重启的开销</li>
+<li>在 1.3.7 的缓存优化基础上进一步降低延迟</li>
+<li>对数据上传启用 GZIP 以减少带宽使用</li>
+</ul>
+<h2 id="vivo-137-released-1132025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.7.aar"><strong>vivo-1.3.7</strong></a> released 11/3/2025</h2>
+<ul>
+<li>Dramatic improvement in CPU usage, and reduction in latency for result serving</li>
+<li>Smarter timing of local data refresh to reduce battery consumption</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>显著改善 CPU 使用率并降低结果提供延迟</li>
+<li>更智能地安排本地数据刷新时间以降低电量消耗</li>
+</ul>
+<h2 id="vivo-136-released-10302025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.6.aar"><strong>vivo-1.3.6</strong></a> released 10/30/2025</h2>
+<ul>
+<li>Overhaul cache refresh logic to reduce battery consumption</li>
+<li>Improved usage refresh logic to reduce battery consumption</li>
+<li>DB hardening to handle case of corrupt file</li>
+<li>Less frequent agg stats sync to minimize network usage</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>全面改造缓存刷新逻辑以降低电量消耗</li>
+<li>优化使用数据刷新逻辑以降低电量消耗</li>
+<li>强化数据库以应对文件损坏场景</li>
+<li>降低聚合统计同步频率以减少网络占用</li>
+</ul>
+<h2 id="vivo-135-released-10152025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.5.aar"><strong>vivo-1.3.5</strong></a> released 10/15/2025</h2>
+<ul>
+<li>Improved network connection handling for reduced bandwidth usage and improved latency</li>
+<li>Fixed a bug introduced with the shortcut logic in 1.3.4</li>
+<li>Disabled shortcuts and notifications by default.</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>改进网络连接处理以降低带宽占用并缩短延迟</li>
+<li>修复 1.3.4 中快捷方式逻辑引入的缺陷</li>
+<li>默认禁用快捷方式和通知</li>
+</ul>
+<h2 id="vivo-134-released-9262025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.4.aar"><strong>vivo-1.3.4</strong></a> released 9/26/2025</h2>
+<ul>
+<li>Try/catch around shortcut calls that crash in device-lock scenarios</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>在可能因设备锁定而崩溃的快捷方式调用外部添加 try/catch</li>
+</ul>
+<h2 id="vivo-133-released-9182025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.3.aar"><strong>vivo-1.3.3</strong></a> released 9/18/2025</h2>
+<ul>
+<li>Removed some unnecessary logging</li>
+<li>Upgraded the QuickJS library to support modern Android requirements</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>移除部分不必要的日志</li>
+<li>升级 QuickJS 库以满足现代 Android 要求</li>
+</ul>
+<h2 id="vivo-132-released-912025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.2.aar"><strong>vivo-1.3.2</strong></a> released 9/1/2025</h2>
+<ul>
+<li>Better handling in case of local database corruption</li>
+<li>Improved local database performance</li>
+<li>Significant improvement in data refresh memory efficiency</li>
+<li>Better handling of ad link latency (timeouts, network detection)</li>
+<li>Improved service connectivity management</li>
+<li>Addressed risk in cross-service file communication (user agent sync)</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>更好地处理本地数据库损坏情况</li>
+<li>提升本地数据库性能</li>
+<li>显著提升数据刷新时的内存效率</li>
+<li>改进广告链接延迟处理（超时、网络检测）</li>
+<li>改进服务连接管理</li>
+<li>解决跨服务文件通信（User Agent 同步）中的风险</li>
+</ul>
+<h2 id="vivo-131-released-7252025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.1.aar"><strong>vivo-1.3.1</strong></a> released 7/25/2025</h2>
+<ul>
+<li>Better support for upgrade path for pre-1.3.0 SDK versions</li>
+<li>Minor improvements to the isInstalled logic</li>
+<li>Minor bug fixes on new features for 1.3.0</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>更好地支持 1.3.0 之前版本的升级路径</li>
+<li>对 isInstalled 逻辑进行小幅改进</li>
+<li>修复 1.3.0 新特性相关的一些小问题</li>
+</ul>
+<h2 id="vivo-130-released-6252025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.0.aar"><strong>vivo-1.3.0</strong></a> released 6/25/2025</h2>
+<ul>
+<li>Improved support for app enabling/disabling</li>
+<li>Improved support for work profile apps, removing and enabling profiles</li>
+<li>Better non-English language support for search query matching</li>
+<li>App entities are now for launch activities in apps, rather than just package names aligning better with most OEM launcher UX</li>
+<li>1 character length query search cache delivering instant first results</li>
+<li>Fixed some search query cache bugs, where a cache could be stale when apps were enabled/disabled</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>提升应用启用/禁用的支持能力</li>
+<li>改进工作配置文件应用的管理，包括移除与启用</li>
+<li>增强非英语语言的搜索匹配支持</li>
+<li>应用实体现在指向应用内的启动 Activity，而不再仅对应包名，更契合大多数 OEM 启动器体验</li>
+<li>针对单字符查询的搜索缓存，提供即时首个结果</li>
+<li>修复当应用启用/禁用时可能导致缓存过期的搜索缓存缺陷</li>
+</ul>
+<h2 id="vivo-124-released-532025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.4.aar"><strong>vivo-1.2.4</strong></a> released 5/3/2025</h2>
+<ul>
+<li>Improve wake broadcast for better data synchronization</li>
+<li>Reduce unnecessary event logging</li>
+<li>Improve debug mode for first session</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>改进唤醒广播以提升数据同步</li>
+<li>减少不必要的事件日志</li>
+<li>优化首次会话的调试模式</li>
+</ul>
+<h2 id="vivo-123-released-3142025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.3.aar"><strong>vivo-1.2.3</strong></a> released 3/14/2025</h2>
+<ul>
+<li>Latency improvements for ad serving through warm ups of key service</li>
+<li>Support new macro for passing product source to URL</li>
+<li>Security improvement for parseUri on link redirection</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>通过预热关键服务改善广告投放延迟</li>
+<li>支持用于将产品来源传递到 URL 的新宏</li>
+<li>提升链接重定向中 parseUri 的安全性</li>
+</ul>
+<h2 id="vivo-122-released-3142025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.2.aar"><strong>vivo-1.2.2</strong></a> released 3/14/2025</h2>
+<ul>
+<li>Minor memory optimizations</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>进行少量内存优化</li>
+</ul>
+<h2 id="vivo-121-released-2202025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar"><strong>vivo-1.2.1</strong></a> released 2/20/2025</h2>
+<ul>
+<li>Implemented native fallback support for search and suggestions</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>实现搜索与建议的原生回退支持</li>
+</ul>
+<h2 id="vivo-120-released-242025"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.0.aar"><strong>vivo-1.2.0</strong></a> released 2/4/2025</h2>
+<ul>
+<li>Added cloned and multi-user app support</li>
+<li>Restructured network sync to improve performance and reduce data transfer</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>新增克隆与多用户应用支持</li>
+<li>重构网络同步以提升性能并减少数据传输</li>
+</ul>
+<h2 id="vivo-1117-released-12122024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.17.aar"><strong>vivo-1.1.17</strong></a> released 12/12/2024</h2>
+<ul>
+<li>More robust coverage of initialization to handle unpredictable calls to destroy()</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>加强初始化覆盖范围，以应对不可预测的 destroy() 调用</li>
+</ul>
+<h2 id="vivo-1116-released-12102024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar"><strong>vivo-1.1.16</strong></a> released 12/10/2024</h2>
+<ul>
+<li>Added support for destination URL override</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>新增目标 URL 覆盖支持</li>
+</ul>
+<h2 id="vivo-1115-released-1242024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar"><strong>vivo-1.1.15</strong></a> released 12/4/2024</h2>
+<ul>
+<li>Added support for gzip for reduced bandwidth usage</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>新增 gzip 支持以减少带宽使用</li>
+</ul>
+<h2 id="vivo-1114-released-11242024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.14.aar"><strong>vivo-1.1.14</strong></a> released 11/24/2024</h2>
+<ul>
+<li>Changed back to market:// URLs for app install campaigns</li>
+<li>Fixed a bug for routing duplicate clicks</li>
+<li>Removed logging when debug mode is off</li>
+<li>Fast open app store when link is cached</li>
+<li>Query parameters for market URL rewrites</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>将应用安装推广的链接改回使用 market:// URL</li>
+<li>修复处理重复点击的缺陷</li>
+<li>在非调试模式下移除日志</li>
+<li>当链接已缓存时快速打开应用商店</li>
+<li>为市场 URL 重写增加查询参数</li>
+</ul>
+<h2 id="vivo-1113-released-1172024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.13.aar"><strong>vivo-1.1.13</strong></a> released 11/7/2024</h2>
+<ul>
+<li>Fixed an issue where new apps were not being assigned a user profile</li>
+<li>Improved the latency of link redirects in some cases</li>
+<li>Added support for intent-based deep linking</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>修复新应用未分配用户画像的问题</li>
+<li>在部分场景下改善链接重定向延迟</li>
+<li>新增基于 Intent 的深度链接支持</li>
+</ul>
+<h2 id="vivo-1112-released-1152024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.12.aar"><strong>vivo-1.1.12</strong></a> released 11/5/2024</h2>
+<ul>
+<li>Better management of the local GAID</li>
+<li>Change of direct linking for app install campaigns</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>更好地管理本地 GAID</li>
+<li>调整应用安装推广的直接链接策略</li>
+</ul>
+<h2 id="vivo-1111-released-1112024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.11.aar"><strong>vivo-1.1.11</strong></a> released 11/1/2024</h2>
+<ul>
+<li>Reduced the time taken to retrieve the Chrome User Agent in the separate process to minimize the chance of collisions.</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>缩短在独立进程中获取 Chrome User Agent 的时间，降低冲突概率</li>
+</ul>
+<h2 id="vivo-1110-released-10202024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.10.aar"><strong>vivo-1.1.10</strong></a> released 10/20/2024</h2>
+<ul>
+<li>Fixed a bug where the app name was being used instead of the title</li>
+<li>Implemented better launching of User Agent collection service to handle background restrictions</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>修复使用应用名称替代标题的缺陷</li>
+<li>改进 User Agent 收集服务的启动方式以适应后台限制</li>
+</ul>
+<h2 id="vivo-119-released-1082024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.9.aar"><strong>vivo-1.1.9</strong></a> released 10/8/2024</h2>
+<ul>
+<li>Added DNAResultItem.className and DNAResultItem.getComponentName to support alternative filtering/deduping</li>
+<li>SDK now supports work profile management</li>
+<li>Some performance improvements to ad serving</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>新增 DNAResultItem.className 和 DNAResultItem.getComponentName 以支持替代的过滤/去重策略</li>
+<li>SDK 现已支持工作配置文件管理</li>
+<li>提升广告投放性能</li>
+</ul>
+<h2 id="vivo-118-released-9302024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.8.aar"><strong>vivo-1.1.8</strong></a> released 9/30/2024</h2>
+<ul>
+<li>Fixed potential null pointer exception in profile change monitor</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>修复画像变更监视器中潜在的空指针异常</li>
+</ul>
+<h2 id="vivo-117-released-9262024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.7.aar"><strong>vivo-1.1.7</strong></a> released 9/26/2024</h2>
+<ul>
+<li>Improved the robustness of inter-process communication for user agent</li>
+<li>Lower resource consumption when reading user agent</li>
+<li>Added code to prevent duplicate data orchestrator services from running</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>增强 User Agent 相关的进程间通信可靠性</li>
+<li>降低读取 User Agent 时的资源消耗</li>
+<li>新增逻辑以防止数据编排服务重复运行</li>
+</ul>
+<h2 id="vivo-116-released-992024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.6.aar"><strong>vivo-1.1.6</strong></a> released 9/9/2024</h2>
+<ul>
+<li>Made DNAResultItem Parceable</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>使 DNAResultItem 实现 Parcelable 接口</li>
+</ul>
+<h2 id="vivo-115-released-952024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.5.aar"><strong>vivo-1.1.5</strong></a> released 9/5/2024</h2>
+<ul>
+<li>Initialization ongoing memory reduction of ~ 20MB</li>
+<li>Isolated Chrome User Agent fetch to process in order to constrain memory consumption</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>初始化过程的持续内存占用减少约 20MB</li>
+<li>将 Chrome User Agent 的获取隔离到单独进程以限制内存消耗</li>
+</ul>
+<h2 id="vivo-114-released-8262024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.4.aar"><strong>vivo-1.1.4</strong></a> released 8/26/2024</h2>
+<ul>
+<li>Most app-install clicks will now be instantaneous</li>
+<li>Parallel process tracking link and Play Store redirect when possible</li>
+<li>Improved performance of Google Play to Custom Store remapping</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>大多数应用安装点击现在可即时响应</li>
+<li>尽可能并行处理跟踪链接与 Play 商店重定向</li>
+<li>改进从 Google Play 到自定义商店的重映射性能</li>
+</ul>
+<h2 id="vivo-113-released-8232024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.3.aar"><strong>vivo-1.1.3</strong></a> released 8/23/2024</h2>
+<ul>
+<li>Redirect prefetching for high likelihood clicks</li>
+<li>Cache and reused redirect outcomes for improved performance on repeat clicks</li>
+<li>Improved thread performance for click speedup</li>
+<li>Implemented deep linking for install ads that are already installed</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>为高概率点击预取重定向</li>
+<li>缓存并复用重定向结果以提升重复点击性能</li>
+<li>改进线程性能以加速点击响应</li>
+<li>为已安装的安装广告实现深度链接</li>
+</ul>
+<h2 id="vivo-112-released-8222024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.2.aar"><strong>vivo-1.1.2</strong></a> released 8/22/2024</h2>
+<ul>
+<li>Remote control to disable app usage stats collection</li>
+<li>Improved poor connection handling in link routing use case</li>
+<li>Exposed app ratings, downloads, and reviews in DNAResultItem</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>新增远程控制以禁用应用使用统计收集</li>
+<li>在链接路由场景下改进弱网处理</li>
+<li>在 DNAResultItem 中暴露应用评分、下载量与评价</li>
+</ul>
+<h2 id="vivo-111-released-8202024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.1.aar"><strong>vivo-1.1.1</strong></a> released 8/20/2024</h2>
+<ul>
+<li>Added ability to register impression manually for DNA search results (already existed for recommendations)</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>为 DNA 搜索结果新增手动注册曝光的能力（推荐结果已支持）</li>
+</ul>
+<h2 id="vivo-110-released-8192024"><a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.0.aar"><strong>vivo-1.1.0</strong></a> released 8/19/2024</h2>
+<ul>
+<li>First release of custom vivo DNA SDK</li>
+<li>Performance optimizations for vivo Global Search use case</li>
+</ul>
+<p><strong>中文翻译：</strong></p>
+<ul>
+<li>定制版 vivo DNA SDK 的首次发布</li>
+<li>针对 vivo 全局搜索场景进行性能优化</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.suggest", "search.highlight", "navigation.footer"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
