@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+set -euo pipefail
+
+export GOOGLE_WORKSPACE_CLI_CONFIG_DIR="${GOOGLE_WORKSPACE_CLI_CONFIG_DIR:-/Users/alex/.config/gws-devicenative}"
+
+exec /opt/homebrew/bin/gws "$@"
