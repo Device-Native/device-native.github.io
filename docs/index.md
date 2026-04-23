@@ -16,8 +16,8 @@ This is the general SDK integration guide that is required for all implementatio
 
 These documents are for developers who intend to use both organic results and advertisements from Device Native.
 
-- [Organic & Ad Recommendations](rec-organic-ads.md) - shows how to integrate organic results and ads into recommendation sections of your launcher, such as suggested or recently-used apps, or suggested deep links.
-- [Search for Organic & Ads](search-organic-ads.md) - shows how to integrate organic results and ads into search results of your launcher
+- [Organic & Ad Recommendations](rec-organic.md) - shows how to integrate organic results and ads into recommendation sections of your launcher, such as suggested or recently-used apps, or suggested deep links.
+- [Search for Organic & Ads](search-organic.md) - shows how to integrate organic results and ads into search results of your launcher
 
 ## Ads Only Integrations
 
@@ -27,6 +27,13 @@ These documents are for developers who only intend to use the advertisements fro
 - [Search Ads](search-ads.md) - shows how to integrate ads into search results of your launcher.
 - [Hot App Suggestions](hot-app-suggestions.md) - shows how to integrate hot app suggestions into your launcher.
 
+## Moto Partner Docs
+
+These documents are the Moto-specific partner references and were last audited against `dn-sdk` Moto artifact `1.6.7`.
+
+- [Moto Integration Guide](moto-integration.md) - current Moto setup, lifecycle, search, suggestions, hot apps, click routing, and advanced controls
+- [Moto EULA](moto-eula.md) - current Moto SDK EULA mirrored from the packaged SDK license
+
 ## Need Help?
 
-Please email [help@devicenative.com](help@devicenative.com) for assistance or questions about the process.
+Please email [help@devicenative.com](mailto:help@devicenative.com) for assistance or questions about the process.
