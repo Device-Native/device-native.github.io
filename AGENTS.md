@@ -25,6 +25,16 @@ These repositories are part of the same DeviceNative sync/click/analytics loop a
 - [`dn-frontend`](../dn-frontend): Next.js/Amplify dashboard and admin UI. Displays analytics and manages content, offers, settings, and operational tooling.
 - [`dn-jsads`](../dn-jsads): JavaScript targeting-algorithm repo. Houses the targeting code-version logic plus test data and runnable framing used to validate selection behavior locally.
 
+## Canonical docs
+
+Shared operational docs that should stay stable across branch-heavy repos live in stable public and internal docs locations.
+
+- End-to-end ad sync, storage, geo delivery, analytics, and revenue debugging guide: `../dn-frontend/docs/agents/ad-object-flow.md`
+- Moto/Indus targeted boost implementation spec for segmented hosted configs, model routing, campaign metadata, and validation: `../dn-frontend/specs/moto-indus-targeted-boost.md`
+- Link redirection system from SDK click handling through `dn-click-router`, including caches, rewrites, speedups, and safe fallbacks: `../dn-click-router/docs/agents/link-redirection-system.md`
+- Moto link validation, DNATestBed workflow, blacklists, discovery, rewrites, and learned early-stop policy: `../dn-click-router/docs/agents/moto-link-validation.md`
+- Monthly partner reporting guide for Motorola and vivo, including scripts, data sources, Google Docs workflow, and audit rules: `../dn-click-router/docs/agents/monthly-partner-reporting.md`
+
 ## Google Workspace access
 
 For Google Docs, Sheets, Slides, Drive, Gmail, or Calendar work in this repo, use the DeviceNative-specific wrapper so you do not overwrite the other `gws` login on this machine.
