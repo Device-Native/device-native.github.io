@@ -1,8 +1,8 @@
 # DNA SDK for Moto - End-User License Agreement (EULA)
 
-**EULA Version:** 1.6.7  
+**EULA Version:** 1.6.8  
 **Effective Date:** November 19, 2025  
-**Current SDK Coordinates:** `com.devicenative.dna:moto:1.6.7`  
+**Current SDK Coordinates:** `com.devicenative.dna:moto:1.6.8`  
 **SPDX:** `LicenseRef-DNA-EULA-Proprietary`  
 **Owner:** Device Native, Inc.  
 **Contact:** oss@devicenative.com

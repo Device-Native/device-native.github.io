@@ -29,7 +29,7 @@ These documents are for developers who only intend to use the advertisements fro
 
 ## Moto Partner Docs
 
-These documents are the Moto-specific partner references and were last audited against `dn-sdk` Moto artifact `1.6.7`.
+These documents are the Moto-specific partner references and were last audited against `dn-sdk` Moto artifact `1.6.8`.
 
 - [Moto Integration Guide](moto-integration.md) - current Moto setup, lifecycle, search, suggestions, hot apps, click routing, and advanced controls
 - [Moto EULA](moto-eula.md) - current Moto SDK EULA mirrored from the packaged SDK license

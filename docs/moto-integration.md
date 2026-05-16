@@ -1,8 +1,8 @@
 # DNA SDK for Moto - Integration Guide
 
 **Last audited:** April 23, 2026  
-**Current SDK artifact:** `com.devicenative.dna:moto:1.6.7`  
-**Current SDK version string:** `moto-v1.6.7`
+**Current SDK artifact:** `com.devicenative.dna:moto:1.6.8`  
+**Current SDK version string:** `moto-v1.6.8`
 
 This guide reflects the current Moto SDK implementation in `dn-sdk` on the `motorola` branch. It replaces the older `1.3.0` integration notes and calls out the SDK behavior that partners need to handle explicitly.
 
@@ -16,7 +16,7 @@ Add the dependency to your launcher app:
 
 ```kotlin
 dependencies {
-    implementation("com.devicenative.dna:moto:1.6.7")
+    implementation("com.devicenative.dna:moto:1.6.8")
 }
 ```
 
