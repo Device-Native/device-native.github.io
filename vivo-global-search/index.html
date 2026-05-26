@@ -1,0 +1,1096 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The integration guide for Device Native's SDK">
+      
+      
+        <meta name="author" content="Device Native, Inc">
+      
+      
+        <link rel="canonical" href="https://device-native.github.io/vivo-global-search/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>DNA - vivo Global Search Integration Guide - Device Native Integration Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dna-vivo-global-search-integration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Device Native Integration Documentation" class="md-header__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Device Native Integration Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DNA - vivo Global Search Integration Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Device Native Integration Documentation" class="md-nav__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    Device Native Integration Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrate-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrate Android SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-organic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organic/Ads - Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-organic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organic/Ads - Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-ads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hot-app-suggestions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Hot Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-ads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ads Only - Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sdk-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. SDK Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. SDK Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-sdk-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 SDK package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-manifest-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Manifest entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Initialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-global-search-recommended-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Global Search Recommended Apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Global Search Recommended Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-fetch-dna-recommendation-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Fetch DNA recommendation candidates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-result-fields-vivo-should-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Result fields Vivo should use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-split-the-results-into-the-3-recommendation-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Split the results into the 3 recommendation scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-render-icons-and-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Render icons and text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-register-impressions-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Register impressions manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-route-clicks-through-dna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Route clicks through DNA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-global-search-search-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Global Search Search Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Global Search Search Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-fetch-all-search-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Fetch all search results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-split-local-app-vs-app-store-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Split local-app vs app-store scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-register-impressions-for-visible-scenario-5-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Register impressions for visible Scenario 5 results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-mix-scenario-6-with-vivo-app-store-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Mix Scenario 6 with Vivo app-store results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-register-impressions-for-visible-scenario-6-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Register impressions for visible Scenario 6 results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-render-icons-and-route-clicks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Render icons and route clicks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-practical-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Practical Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="dna-vivo-global-search-integration-guide">DNA - vivo Global Search Integration Guide</h1>
+<p>vivo Global Search 集成指南</p>
+<p><strong>Last audited:</strong> April 23, 2026<br />
+<strong>SDK branch:</strong> <code>vivo-1.1.0</code><br />
+<strong>Current SDK version string:</strong> <code>vivo-1.3.10</code></p>
+<p>This guide reflects the current Vivo SDK branch in <code>dn-sdk</code>. It replaces the older proposal-style notes and aligns the integration guidance to the actual <code>vivo-1.3.10</code> SDK surface.</p>
+<p>本文档基于 <code>dn-sdk</code> 当前的 Vivo 分支编写，并与实际的 <code>vivo-1.3.10</code> SDK 接口保持一致。</p>
+<h2 id="1-sdk-integration">1. SDK Integration</h2>
+<p>SDK 集成</p>
+<p>See <a href="../vivo-sdk-changelog/">vivo-sdk-changelog</a> for release history.</p>
+<p>版本记录请参见 <a href="../vivo-sdk-changelog/">vivo-sdk-changelog</a>。</p>
+<h3 id="11-sdk-package">1.1 SDK package</h3>
+<p>SDK 包</p>
+<p>The Vivo Global Search SDK is currently distributed as an AAR:</p>
+<p>当前 Vivo Global Search SDK 以 AAR 形式分发：</p>
+<ul>
+<li>Latest AAR: <a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.10.aar">https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.3.10.aar</a></li>
+<li><code>minSdk</code> is <code>24</code></li>
+</ul>
+<p>Place the AAR in your app <code>libs/</code> folder and reference it from Gradle:</p>
+<p>请将 AAR 放入应用的 <code>libs/</code> 目录，并在 Gradle 中引入：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dependencies {
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    implementation files(&quot;libs/com.devicenative.dna-vivo-v1.3.10.aar&quot;)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>}
+</span></code></pre></div>
+<h3 id="12-manifest-entries">1.2 Manifest entries</h3>
+<p>Manifest 配置</p>
+<p>Register the SDK services in your host app manifest:</p>
+<p>请在宿主应用的 manifest 中注册以下服务：</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;service</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;com.devicenative.dna.DNADataOrchestrator&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;service</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;com.devicenative.dna.utils.DNAConfigBuilder&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="na">android:process=</span><span class="s">&quot;:dna_config_builder&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span></code></pre></div>
+<p>Host app permissions:</p>
+<p>宿主应用需要以下权限：</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.QUERY_ALL_PACKAGES&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.PACKAGE_USAGE_STATS&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span></code></pre></div>
+<p>Notes:</p>
+<ul>
+<li><code>QUERY_ALL_PACKAGES</code> is required for launcher-wide package visibility.</li>
+<li><code>PACKAGE_USAGE_STATS</code> is strongly recommended for the ranking quality expected by this integration.</li>
+<li>The SDK library already declares <code>android.permission.ACCESS_NETWORK_STATE</code>.</li>
+</ul>
+<p>说明：</p>
+<ul>
+<li><code>QUERY_ALL_PACKAGES</code> 用于完整读取设备应用列表。</li>
+<li><code>PACKAGE_USAGE_STATS</code> 对排序质量非常重要，建议开启。</li>
+<li>SDK 自身已声明 <code>android.permission.ACCESS_NETWORK_STATE</code>。</li>
+</ul>
+<h3 id="13-initialization">1.3 Initialization</h3>
+<p>初始化</p>
+<p>Initialize the SDK from <code>Application.onCreate()</code>:</p>
+<p>请在 <code>Application.onCreate()</code> 中初始化 SDK：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@Override</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">();</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">dna</span><span class="p">.</span><span class="na">init</span><span class="p">(</span><span class="s">&quot;da01177b-1526-4b81-9b9d-4a24e54674ac&quot;</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>This Vivo branch currently uses <code>init(deviceKey)</code> only. It does not expose the newer Moto-style <code>DNAConfig</code> or <code>PackagesRefreshedListener</code> API surface.</p>
+<p>当前 Vivo 分支仅使用 <code>init(deviceKey)</code>，不包含 Moto 分支中的 <code>DNAConfig</code> 或 <code>PackagesRefreshedListener</code> 接口。</p>
+<h3 id="14-cleanup">1.4 Cleanup</h3>
+<p>清理</p>
+<p>If you have a controlled teardown path, test harness, or equivalent shutdown flow, call:</p>
+<p>如果宿主应用存在可控的退出流程、测试环境或等效的关闭逻辑，可以调用：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">destroy</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Do not rely on <code>Application.onTerminate()</code> as a normal Android production lifecycle hook.</p>
+<p>不要把 <code>Application.onTerminate()</code> 当作 Android 生产环境中的常规生命周期回调。</p>
+<h2 id="2-global-search-recommended-apps">2. Global Search Recommended Apps</h2>
+<p>全局搜索推荐应用</p>
+<p>This section covers the current Global Search recommendation integration for:</p>
+<p>本节说明 Global Search 推荐应用的当前接入方式：</p>
+<ol>
+<li>Scenario 1: Slot 3 and 8, CPC</li>
+<li>Scenario 2: Slot 4 and 9, CPC + CPA</li>
+<li>Scenario 3: Slot 5 and 10, CPA</li>
+</ol>
+<h3 id="21-fetch-dna-recommendation-candidates">2.1 Fetch DNA recommendation candidates</h3>
+<p>获取 DNA 推荐候选结果</p>
+<p>Use the cache-safe API because Vivo decides which results become visible and must manually register impressions later.</p>
+<p>由于 Vivo 需要自行决定哪些结果真正展示，并在后续手动上报展示，因此这里应使用 cache-safe API。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adUnits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dna</span><span class="p">.</span><span class="na">getAdsForCache</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, recommended apps&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Important behavior:</p>
+<ul>
+<li>Results are ordered by relevance and monetization priority.</li>
+<li>This API does <strong>not</strong> auto-fire impressions.</li>
+<li>Installed results (<code>isInstalled == true</code>) are re-engagement candidates.</li>
+<li>Uninstalled results (<code>isInstalled == false</code>) are install / app-store candidates.</li>
+</ul>
+<p>关键行为：</p>
+<ul>
+<li>结果已按相关性和收益优先级排序。</li>
+<li>该接口<strong>不会</strong>自动触发展示上报。</li>
+<li><code>isInstalled == true</code> 表示拉活候选。</li>
+<li><code>isInstalled == false</code> 表示安装类候选。</li>
+</ul>
+<h3 id="22-result-fields-vivo-should-use">2.2 Result fields Vivo should use</h3>
+<p>推荐使用的结果字段</p>
+<p>These fields exist in the current <code>vivo-1.3.10</code> branch and are safe to rely on:</p>
+<p>以下字段存在于当前 <code>vivo-1.3.10</code> 分支中，可直接使用：</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Tracking identifier</td>
+</tr>
+<tr>
+<td><code>resultType</code></td>
+<td>Distinguishes <code>TYPE_AD</code>, <code>TYPE_APP</code>, <code>TYPE_SHORTCUT</code>, etc.</td>
+</tr>
+<tr>
+<td><code>packageName</code></td>
+<td>App package</td>
+</tr>
+<tr>
+<td><code>className</code></td>
+<td>Activity / component when present</td>
+</tr>
+<tr>
+<td><code>userHandle</code> / <code>uId</code></td>
+<td>Multi-user / cloned-app identity</td>
+</tr>
+<tr>
+<td><code>isInstalled</code></td>
+<td>Installed vs. uninstalled split</td>
+</tr>
+<tr>
+<td><code>title</code> / <code>description</code></td>
+<td>Rendered creative text</td>
+</tr>
+<tr>
+<td><code>iconUrl</code></td>
+<td>Remote icon for promoted / uninstalled results</td>
+</tr>
+<tr>
+<td><code>clickUrl</code></td>
+<td>SDK-managed tracking URL</td>
+</tr>
+<tr>
+<td><code>destinationUrl</code></td>
+<td>Expected terminal routing target</td>
+</tr>
+<tr>
+<td><code>impressionUrl</code></td>
+<td>Impression endpoint used by the SDK</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Result source</td>
+</tr>
+<tr>
+<td><code>placementTag</code></td>
+<td>Original request tag</td>
+</tr>
+</tbody>
+</table>
+<p>Do not rely on older doc-only fields such as <code>eCPM</code> or <code>learningMode</code>; they are not part of the current branch’s <code>DNAResultItem</code> class.</p>
+<p>请不要依赖旧文档中的 <code>eCPM</code>、<code>learningMode</code> 等字段；这些字段并不存在于当前分支的 <code>DNAResultItem</code> 中。</p>
+<h3 id="23-split-the-results-into-the-3-recommendation-scenarios">2.3 Split the results into the 3 recommendation scenarios</h3>
+<p>将结果拆分到 3 个推荐场景中</p>
+<p>The SDK returns one ranked list. Vivo should split it into the three recommendation scenarios.</p>
+<p>SDK 返回的是一个统一排序后的列表，Vivo 需要按业务场景自行拆分。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scenario1Ads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// slot 3 and 8, CPC</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scenario2Ads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// slot 4 and 9, CPC + CPA</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scenario3Ads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// slot 5 and 10, CPA</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">DNAResultItem</span><span class="w"> </span><span class="n">resultItem</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">adUnits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">isInstalled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">scenario1Ads</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="n">scenario1Ads</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">scenario2Ads</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span><span class="n">scenario2Ads</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">scenario2Ads</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">            </span><span class="n">scenario2Ads</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">scenario3Ads</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">            </span><span class="n">scenario3Ads</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>For installed results, dedupe and replacement logic should preserve the full installed-app identity. Use a key like:</p>
+<p>对于已安装结果，去重和替换时应保留完整的安装实例身份。建议使用如下 key：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>packageName + &quot;|&quot; + className + &quot;|&quot; + userHandle
+</span></code></pre></div>
+<p>Do not collapse installed results by <code>packageName</code> alone, because cloned apps, work-profile apps, or multi-activity variants can legitimately share the same package.</p>
+<p>不要仅按 <code>packageName</code> 去重已安装结果，因为分身应用、工作资料夹应用以及多 Activity 变体可能共享同一个包名。</p>
+<p>For uninstalled app-store candidates, package-level dedupe is still reasonable.</p>
+<p>对于未安装的商店候选结果，按包名去重仍然是合理的。</p>
+<h3 id="24-render-icons-and-text">2.4 Render icons and text</h3>
+<p>渲染图标和文本</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">ImageView</span><span class="w"> </span><span class="n">itemIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_icon</span><span class="p">);</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">TextView</span><span class="w"> </span><span class="n">itemTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_title</span><span class="p">);</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">TextView</span><span class="w"> </span><span class="n">itemDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_description</span><span class="p">);</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">isInstalled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">Drawable</span><span class="w"> </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPackageManager</span><span class="p">().</span><span class="na">getApplicationIcon</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">packageName</span><span class="p">);</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">icon</span><span class="p">);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">resultItem</span><span class="p">.</span><span class="na">loadCreativeDrawableAsync</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DNAResultItem</span><span class="p">.</span><span class="na">ImageCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onImageLoaded</span><span class="p">(</span><span class="n">Drawable</span><span class="w"> </span><span class="n">icon</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">            </span><span class="n">runOnUiThread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">icon</span><span class="p">));</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="nd">@Override</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onError</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error loading icon: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">}</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="n">itemTitle</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">title</span><span class="p">);</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">description</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">resultItem</span><span class="p">.</span><span class="na">description</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="n">itemDescription</span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">View</span><span class="p">.</span><span class="na">GONE</span><span class="p">);</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span><span class="n">itemDescription</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">description</span><span class="p">);</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="25-register-impressions-manually">2.5 Register impressions manually</h3>
+<p>手动上报展示</p>
+<p>Because <code>getAdsForCache(...)</code> does not auto-register impressions, Vivo must register impressions for the results that actually became visible.</p>
+<p>由于 <code>getAdsForCache(...)</code> 不会自动上报展示，所以 Vivo 需要对真正展示给用户的结果手动上报。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">dna</span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">scenario1Ads</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, scenario 1, slot 3 and 8, CPC&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">dna</span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">scenario2Ads</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, scenario 2, slot 4 and 9, CPC+CPA&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">dna</span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">scenario3Ads</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, scenario 3, slot 5 and 10, CPA&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+</span></code></pre></div>
+<p>The third argument is the optional <code>DeviceNativeClickHandler</code>; pass <code>null</code> if you do not need callback handling for the impression batch.</p>
+<p>第三个参数是可选的 <code>DeviceNativeClickHandler</code>；如果不需要回调，可以传 <code>null</code>。</p>
+<h3 id="26-route-clicks-through-dna">2.6 Route clicks through DNA</h3>
+<p>通过 DNA 处理点击路由</p>
+<p>Use the SDK click router so tracking, redirect handling, and deep linking stay aligned with the Vivo branch behavior.</p>
+<p>请使用 SDK 自带的点击路由逻辑，以保证点击跟踪、跳转链路和 deeplink 行为与当前 Vivo 分支保持一致。</p>
+<p>If Vivo needs to override the store destination URL, use the overload with <code>destinationUrlOverride</code>:</p>
+<p>如果 Vivo 需要覆盖商店目标地址，请使用带 <code>destinationUrlOverride</code> 的重载接口：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">String</span><span class="w"> </span><span class="n">overrideAppStoreUrl</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="s">&quot;vivoMarket://mobile/detail?package_name=com.whatsapp&amp;direct_download=false&amp;...&quot;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="na">fireClickAndRoute</span><span class="p">(</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="n">resultItem</span><span class="p">,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="n">overrideAppStoreUrl</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">DeviceNativeClickHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">            </span><span class="nd">@Override</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickServerCompleted</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">                </span><span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Click tracking completed.&quot;</span><span class="p">);</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">            </span><span class="nd">@Override</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickRouterCompleted</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">didRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">didRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">                    </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No route target was opened.&quot;</span><span class="p">);</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">            </span><span class="nd">@Override</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">errorCode</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">                </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Click failed: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">);</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="p">);</span>
+</span></code></pre></div>
+<p>Show a short loading state while the route is in progress.</p>
+<p>点击处理中建议显示短暂的 loading 状态。</p>
+<h2 id="3-global-search-search-results">3. Global Search Search Results</h2>
+<p>全局搜索搜索结果</p>
+<p>This section covers:</p>
+<p>本节覆盖以下场景：</p>
+<ol>
+<li>Scenario 5: Search / Local Apps Result, CPC</li>
+<li>Scenario 6: Search / App Store Result, CPA</li>
+</ol>
+<h3 id="31-fetch-all-search-results">3.1 Fetch all search results</h3>
+<p>获取搜索结果</p>
+<p>Use the cache-safe search API because Vivo mixes and filters the result set before rendering.</p>
+<p>由于 Vivo 会在渲染前自行混排和过滤结果，因此这里应使用 cache-safe 搜索接口。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adUnits</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="n">dna</span><span class="p">.</span><span class="na">getOrganicResultsForSearchForCache</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, search ads&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<p>This returns a mixed list of installed/local results and uninstalled/store results.</p>
+<p>该接口返回一个混合列表，其中包含本地已安装结果和商店未安装结果。</p>
+<h3 id="32-split-local-app-vs-app-store-scenarios">3.2 Split local-app vs app-store scenarios</h3>
+<p>拆分本地应用结果与商店结果</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scenario5Results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// local / installed</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scenario6Ads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">     </span><span class="c1">// store / uninstalled</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">DNAResultItem</span><span class="w"> </span><span class="n">resultItem</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">adUnits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">isInstalled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">        </span><span class="n">scenario5Results</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="n">scenario6Ads</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">resultItem</span><span class="p">);</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>For Scenario 5, replace Vivo’s local-app list with DNA’s ranked installed results. Preserve the full variant identity with <code>(packageName, className, userHandle)</code> when deduping or reconciling the local list.</p>
+<p>对于场景 5，建议使用 DNA 的已安装结果替换 Vivo 原有的本地应用结果。去重和合并时请保留 <code>(packageName, className, userHandle)</code> 这组完整身份。</p>
+<h3 id="33-register-impressions-for-visible-scenario-5-results">3.3 Register impressions for visible Scenario 5 results</h3>
+<p>为可见的场景 5 结果注册展示</p>
+<p>Only register impressions for the results that were actually shown.</p>
+<p>只对真正展示给用户的结果上报展示。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">visibleScenario5Results</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">        </span><span class="n">scenario5Results</span><span class="p">.</span><span class="na">subList</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">scenario5Results</span><span class="p">.</span><span class="na">size</span><span class="p">()));</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">())</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">        </span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">visibleScenario5Results</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, scenario 5, local apps&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="34-mix-scenario-6-with-vivo-app-store-results">3.4 Mix Scenario 6 with Vivo app-store results</h3>
+<p>将场景 6 与 Vivo 商店结果混排</p>
+<p>For Scenario 6, Vivo can mix the uninstalled DNA results into the app-store result set according to its slotting rules.</p>
+<p>对于场景 6，Vivo 可以根据自己的坑位规则，将未安装的 DNA 结果混入应用商店结果流中。</p>
+<p>When deduping Scenario 6 candidates, package-level dedupe is sufficient.</p>
+<p>场景 6 的候选结果按包名去重即可。</p>
+<h3 id="35-register-impressions-for-visible-scenario-6-results">3.5 Register impressions for visible Scenario 6 results</h3>
+<p>为可见的场景 6 结果注册展示</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">())</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">        </span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">visibleScenario6Results</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gs, scenario 6, app store&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="36-render-icons-and-route-clicks">3.6 Render icons and route clicks</h3>
+<p>渲染图标与处理点击</p>
+<p>Rendering and click handling should use the same rules as the recommendation section:</p>
+<p>渲染和点击处理逻辑与推荐区域保持一致：</p>
+<ul>
+<li>Installed results: use <code>PackageManager</code> icons</li>
+<li>Uninstalled results: use <code>loadCreativeDrawableAsync(...)</code></li>
+<li>Route clicks through <code>fireClickAndRoute(...)</code></li>
+</ul>
+<h2 id="4-practical-notes">4. Practical Notes</h2>
+<p>实践注意事项</p>
+<ul>
+<li>These Vivo integrations intentionally use the <code>*ForCache(...)</code> APIs so that Vivo controls the final visible set and manually fires impressions.</li>
+<li>Do not persist these cached results across long-lived sessions; treat them as short-lived render candidates.</li>
+<li>The current Vivo branch already uses the newer callback names: <code>onClickServerCompleted</code>, <code>onClickRouterCompleted</code>, and <code>onFailure</code>.</li>
+</ul>
+<p>说明：</p>
+<ul>
+<li>这里使用 <code>*ForCache(...)</code> 接口是有意为之，因为最终展示列表和展示上报由 Vivo 侧控制。</li>
+<li>不建议将这些缓存结果长时间持久化，只应作为一次渲染周期内的候选结果。</li>
+<li>当前 Vivo 分支使用的点击回调名称是 <code>onClickServerCompleted</code>、<code>onClickRouterCompleted</code> 和 <code>onFailure</code>。</li>
+</ul>
+<p>For support, email <a href="mailto:help@devicenative.com">help@devicenative.com</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.suggest", "search.highlight", "navigation.footer"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
