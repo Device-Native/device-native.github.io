@@ -27,13 +27,6 @@ These documents are for developers who only intend to use the advertisements fro
 - [Search Ads](search-ads.md) - shows how to integrate ads into search results of your launcher.
 - [Hot App Suggestions](hot-app-suggestions.md) - shows how to integrate hot app suggestions into your launcher.
 
-## Moto Partner Docs
-
-These documents are the Moto-specific partner references and were last audited against `dn-sdk` Moto artifact `1.6.8`.
-
-- [Moto Integration Guide](moto-integration.md) - current Moto setup, lifecycle, search, suggestions, hot apps, click routing, and advanced controls
-- [Moto EULA](moto-eula.md) - current Moto SDK EULA mirrored from the packaged SDK license
-
 ## Need Help?
 
 Please email [help@devicenative.com](mailto:help@devicenative.com) for assistance or questions about the process.

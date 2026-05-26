@@ -1,8 +1,6 @@
 site_name: Device Native Integration Documentation
 nav:
   - Overview: index.md
-  - Moto - Integration: moto-integration.md
-  - Moto - EULA: moto-eula.md
   - Integrate Android SDK: integrate-sdk.md
   - Organic/Ads - Recommendations: rec-organic.md
   - Organic/Ads - Search: search-organic.md
